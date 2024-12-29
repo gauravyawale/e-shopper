@@ -1,0 +1,4 @@
+node_modules
+generateKey.js
+.env-dev
+yarn.lock

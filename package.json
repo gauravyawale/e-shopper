@@ -1,0 +1,36 @@
+{
+  "name": "e-shop-backend",
+  "version": "1.0.0",
+  "description": "shopping app",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env-dev --watch src/app.js",
+    "dev": "nodemon --env-file=.env-dev src/app.js"
+  },
+  "keywords": [
+    "shop",
+    "clothes",
+    "men",
+    "women",
+    "kids",
+    "brands"
+  ],
+  "author": "gaurav-yawale",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2",
+    "nodemon": "^3.1.9",
+    "validator": "^13.12.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
