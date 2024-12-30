@@ -2,11 +2,11 @@
   "name": "e-shop-backend",
   "version": "1.0.0",
   "description": "shopping app",
-  "main": "index.js",
-  "type": "module",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node --env-file=.env-dev --watch src/app.js",
-    "dev": "nodemon --env-file=.env-dev src/app.js"
+    "build": "tsc",
+    "start": "node --env-file=.env.dev dist/app.js",
+    "dev": "nodemon --watch src --exec ts-node src/app.ts"
   },
   "keywords": [
     "shop",
@@ -20,6 +20,8 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.2",
@@ -27,9 +29,12 @@
     "validator": "^13.12.0"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.8",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.2",
+    "@types/validator": "^13.12.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   }

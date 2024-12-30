@@ -1,4 +1,5 @@
 node_modules
 generateKey.js
-.env-dev
+.env
 yarn.lock
+dist
