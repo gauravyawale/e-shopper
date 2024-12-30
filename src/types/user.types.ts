@@ -9,9 +9,9 @@ export interface IUser extends Document {
   dob: Date;
   role: "admin" | "user";
   getJWT(): Promise<string>;
+  decryptPassword(password: string): Promise<boolean>;
 }
 
 export interface IUserModel extends Model<IUser> {
   encryptPassword(password: string): Promise<string>;
-  getJWT(): Promise<string>;
 }
