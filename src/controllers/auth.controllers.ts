@@ -39,7 +39,6 @@ export const signinUser = async (
   try {
     const { email, password } = req.body;
     const getUser = await User.findOne({ email: email });
-    console.log({ getUser });
     if (!getUser) {
       throw new Error("Invalid Credentials!");
     }
@@ -52,5 +51,17 @@ export const signinUser = async (
     res.status(200).json({ message: "LoggedIn successfully!" });
   } catch (err: any) {
     res.status(400).json({ message: err.message });
+  }
+};
+
+export const signoutUser = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    res.clearCookie("token");
+    res.status(200).json({ message: "LoggedOut successfully!" });
+  } catch (err: any) {
+    res.status(500).json({ message: "Error loging out. Please try again!" });
   }
 };

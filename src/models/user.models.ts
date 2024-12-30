@@ -88,7 +88,6 @@ userSchema.methods.decryptPassword = async function (
 };
 
 userSchema.methods.getJWT = async function (): Promise<string> {
-  console.log(this._id);
   const jwtToken = await jwt.sign(
     {
       userId: this._id,
