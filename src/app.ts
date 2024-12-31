@@ -1,8 +1,9 @@
 import express from "express";
-import { connectDB } from "./config/database";
+import { connectDB } from "./config/database.config";
 import { authRouter } from "./routes/auth.routes";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
+import session from "express-session";
+import { userRouter } from "./routes/users.routes";
 
 dotenv.config();
 
@@ -14,9 +15,20 @@ const app = express();
  */
 app.use(express.json());
 /**
- * Middleware to parse incoming cookie.
+ * Session Middleware.
  */
-app.use(cookieParser());
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false,
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+  })
+);
 /**
  * Handle routing for the /api endpoints.
  */
