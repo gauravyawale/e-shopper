@@ -8,7 +8,6 @@ export interface IUser extends Document {
   gender: "male" | "female" | "other";
   dob: Date;
   role: "admin" | "user";
-  getJWT(): Promise<string>;
   decryptPassword(password: string): Promise<boolean>;
 }
 
