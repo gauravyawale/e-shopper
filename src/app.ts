@@ -33,6 +33,7 @@ app.use(
  * Handle routing for the /api endpoints.
  */
 app.use("/api", authRouter);
+app.use("/api", userRouter);
 
 /**
  * Connects to the database and starts the server on the specified port.

@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import validator from "validator";
 import { IUser, IUserModel } from "../types/user.types";
-import jwt from "jsonwebtoken";
 
 const { Schema } = mongoose;
 
@@ -87,15 +86,16 @@ userSchema.methods.decryptPassword = async function (
   return isValidPassword;
 };
 
-userSchema.methods.getJWT = async function (): Promise<string> {
-  const jwtToken = await jwt.sign(
-    {
-      userId: this._id,
-    },
-    process.env.SECRET_KEY,
-    { expiresIn: "1h" }
-  );
-  return jwtToken;
-};
+//TODO: add if required
+// userSchema.methods.getJWT = async function (): Promise<string> {
+//   const jwtToken = await jwt.sign(
+//     {
+//       userId: this._id,
+//     },
+//     process.env.SECRET_KEY,
+//     { expiresIn: "1h" }
+//   );
+//   return jwtToken;
+// };
 
 export const User = mongoose.model<IUser, IUserModel>("User", userSchema);
