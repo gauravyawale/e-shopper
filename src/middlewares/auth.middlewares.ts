@@ -9,8 +9,11 @@ export const userAuth = async (
 ) => {
   try {
     if (!isSessionActive(req)) {
-      throw new Error("Something went wrong. Please login again.");
+      res.status(403).json({ message: "Session expired. Please login again!" });
+      return;
     }
+    const user = await User.findById((req.session as any).user.userId);
+    req.body.user = user;
     next();
   } catch (err: any) {
     res.status(404).json({ message: err.message });

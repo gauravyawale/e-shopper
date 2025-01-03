@@ -62,7 +62,7 @@ const userSchema = new Schema(
       required: true,
       enum: ["male", "female", "other"],
     },
-    images: { type: [String] },
+    image: { type: String },
   },
   { timestamps: true }
 );

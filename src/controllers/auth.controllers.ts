@@ -89,13 +89,13 @@ export const sendResetPasswordOTP = async (
     }
     const { email } = req.body;
     if (validator.isEmail(email)) {
-      res.status(500).json({ message: "Invalid email address!" });
+      res.status(400).json({ message: "Invalid email address!" });
       return;
     }
     const user = await User.findOne({ email: email });
     if (!user) {
       res
-        .status(500)
+        .status(400)
         .json({ message: "You are not registered. Please signup!" });
       return;
     }
@@ -163,7 +163,7 @@ export const resetPassword = async (req: Request, res: Response) => {
     const { email } = (req.session as any).resetDetails;
     if (!email) {
       res
-        .status(400)
+        .status(403)
         .json({ message: "Session is expired. Please try again!" });
       return;
     }
