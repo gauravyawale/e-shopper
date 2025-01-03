@@ -1,0 +1,43 @@
+name: CI/CD Pipeline
+
+# Trigger the workflow on push or pull request to main or integration branches
+on:
+  push:
+    branches:
+      - main
+      - integration
+  pull_request:
+    branches:
+      - main
+      - integration
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x" # Adjust this to your required Node version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run build process (e.g., for React, Next.js, etc.)
+      - name: Build the project
+        run: npm run build
+
+      # Run tests (you can skip this if not needed)
+      # - name: Run tests
+      #   run: npm test
+
+      # # Optional: Linting (if you want to ensure code quality)
+      # - name: Lint the code
+      #   run: npm run lint

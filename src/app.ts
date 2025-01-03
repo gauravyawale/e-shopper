@@ -1,9 +1,10 @@
 import express from "express";
-import { connectDB } from "./config/database.config";
 import { authRouter } from "./routes/auth.routes";
 import dotenv from "dotenv";
 import session from "express-session";
 import { userRouter } from "./routes/users.routes";
+import { connectDB } from "./config/database.config";
+import { itemsRouter } from "./routes/items.routes";
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ app.use(express.json());
  */
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -33,6 +34,8 @@ app.use(
  * Handle routing for the /api endpoints.
  */
 app.use("/api", authRouter);
+app.use("/api", userRouter);
+app.use("/api", itemsRouter);
 
 /**
  * Connects to the database and starts the server on the specified port.
@@ -47,5 +50,5 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.log("Error connecting database");
+    console.log("Error connecting database", err);
   });

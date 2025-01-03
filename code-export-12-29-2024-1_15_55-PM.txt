@@ -1,0 +1,80 @@
+
+
+item [icon: box, color: skyblue] {
+  _id string pk
+  name string
+  price number
+  quantity number
+  user ObjectId user
+  size string
+  description string
+  images [string]
+  category string
+  colors [string]
+}
+
+cart [icon: box, color: yellow]{
+  _id string pk
+  user ObjectId user
+  items objectId[] item
+  totalAmount number
+}
+
+address [icon: azure-location, color: green] {
+  _id string pk
+  fullName string
+  pincode number
+  country string
+  state string
+  city string
+  user ObjectId user
+  street string
+  mobileNumber number
+}
+
+order [icon: square, color: orange] {
+  _id string pk
+  user ObjectId user
+  items ObjectId[] item
+  totalAmount number
+  status string
+  paymentDetails ObjectId payment
+  deliveryAddress ObjectId address
+}
+
+payment [icon: dollar-sign, color: purple, typeface: rough] {
+  _id string pk
+  user ObjectId user
+  order ObjectId order
+  method string
+  status string
+  transactionId string
+}
+
+user [icon: user, color:skyblue]{
+  _id string pk
+  role string
+  firstName string
+  lastName string
+  dob Date
+  gender  string
+  email string
+  password string
+  addresses ObjectId[] address
+  cart ObjectId cart
+}
+
+
+user.cart       -  cart._id  // One-to-one
+item.user       -  user._id // Many-to-one
+cart.user       -  user._id // One-to-one
+cart.items      <  item._id // Many-to-many
+address.user    -  user._id // Many-to-one
+order.user      -  user._id // Many-to-one
+order.items     <  item._id // One-to-many
+order.paymentDetails - payment._id // One-to-one
+order.deliveryAddress - address._id // One-to-one
+payment.user    -  user._id // Many-to-one
+user.addresses  <  address._id // One-to-many
+
+
