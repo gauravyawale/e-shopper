@@ -1,23 +1,26 @@
 API Design Example:
+
 1. User APIs:
 
-GET /users/:id - Get user details by ID.
-POST /users - Create a new user.
-PUT /users/:id - Update user details.
-DELETE /users/:id - Delete user account.
+GET /api/user - Get user details by ID.
+PUT /api/users - Update user details.
+DELETE api/users - Delete user account.
+
 2. Items (Clothes) APIs:
 
-GET /items - Get all items.
-GET /items/:id - Get item details by ID.
-POST /items - Add new item (admin only).
-PUT /items/:id - Update item details (admin only).
-DELETE /items/:id - Delete item (admin only).
+GET /api/items - Get all items.
+GET /api/items/:id - Get item details by ID.
+POST /api/items - Add new item (admin only).
+PUT /api/items/:id - Update item details (admin only).
+DELETE /api/items/:id - Delete item (admin only).
+
 3. Cart APIs:
 
 GET /cart/:userId - Get cart details for a user.
 POST /cart/:userId - Add items to the cart.
 PUT /cart/:userId - Update cart (e.g., change item quantity).
 DELETE /cart/:userId/items/:itemId - Remove item from the cart.
+
 4. Order APIs:
 
 GET /orders/:userId - Get all orders for a user.
@@ -25,13 +28,16 @@ POST /orders - Place a new order.
 GET /orders/:id - Get order details by ID.
 PUT /orders/:id - Update order status (admin only).
 DELETE /orders/:id - Cancel order.
+
 5. Review APIs:
 
 POST /items/:itemId/review - Add a review for an item.
 GET /items/:itemId/reviews - Get all reviews for an item.
 DELETE /reviews/:reviewId - Delete review.
 
+6. Auth APIs:
 
+Post /
 
 ----------------------------------------------------------------
 

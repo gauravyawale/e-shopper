@@ -30,3 +30,22 @@ export const addItem = async (req: Request, res: Response) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+export const getItems = async (req: Request, res: Response) => {
+  try {
+    const { category, page, limit } = req.query;
+    const skip = (parseInt(page as string) - 1) * parseInt(limit as string);
+    const itemLimit = parseInt(limit as string) || 10;
+    console.log(req.query);
+    const items = await Item.find({ category })
+      .skip(skip)
+      .limit(itemLimit)
+      .populate("user", "firstName lastName email")
+      .select(
+        "name user price category description size color quantity images currency"
+      );
+    res.status(200).json({ items });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
